@@ -302,6 +302,16 @@ function draw_scores() {
           }
         }
 
+        if (numHighImprovements > numHighRegressions) {
+          if (numHighRegressions == 0) {
+            th.style.backgroundColor = "var(--improvement-background)";
+          } else {
+            th.style.backgroundColor = "color-mix(in lab, var(--improvement-background) 50%, var(--page-background) 50%)";
+          }
+        } else if (numHighRegressions > 0) {
+          th.style.backgroundColor = "var(--regression-background)";
+        }
+
         {
           const td = document.createElement("td");
           td.classList.add("num");
@@ -312,6 +322,7 @@ function draw_scores() {
             td.style.backgroundColor = "var(--improvement-background)";
           }
         }
+
         {
           const td = document.createElement("td");
           td.classList.add("num");
@@ -319,6 +330,8 @@ function draw_scores() {
           tr.append(td);
           if (numHighImprovements < numHighRegressions) {
             td.style.backgroundColor = "var(--regression-background)";
+          } else if (numHighRegressions > 0) {
+            td.style.backgroundColor = "color-mix(in lab, var(--regression-background) 50%, var(--page-background) 50%)";
           }
         }
       }
