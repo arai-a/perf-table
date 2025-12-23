@@ -348,11 +348,14 @@ function draw_scores() {
           th.append("Improvements");
           tr.append(th);
 
+          let total = 0;
           for (const test of testNames) {
             const td = document.createElement("td");
             td.classList.add("num");
             td.append(per_test_results[test].numHighImprovements);
             tr.append(td);
+
+            total += per_test_results[test].numHighImprovements;
 
             if (per_test_results[test].numHighImprovements > per_test_results[test].numHighRegressions) {
               td.style.backgroundColor = "var(--improvement-background)";
@@ -362,6 +365,8 @@ function draw_scores() {
           {
             const td = document.createElement("td");
             td.classList.add("suite-num-improvements");
+            td.classList.add("num");
+            td.append(total);
             tr.append(td);
           }
           tr.append(document.createElement("td"));
@@ -375,11 +380,14 @@ function draw_scores() {
           th.append("Regression");
           tr.append(th);
 
+          let total = 0;
           for (const test of testNames) {
             const td = document.createElement("td");
             td.classList.add("num");
             td.append(per_test_results[test].numHighRegressions);
             tr.append(td);
+
+            total += per_test_results[test].numHighRegressions;
 
             if (per_test_results[test].numHighImprovements < per_test_results[test].numHighRegressions) {
               td.style.backgroundColor = "var(--regression-background)";
@@ -391,7 +399,12 @@ function draw_scores() {
             td.classList.add("suite-num-improvements");
             tr.append(td);
           }
-          tr.append(document.createElement("td"));
+          {
+            const td = document.createElement("td");
+            td.classList.add("num");
+            td.append(total);
+            tr.append(td);
+          }
         }
       }
 
