@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>table</title>
+<style>
+:root {
+  --page-background: #fff;
+  --page-foreground: #333;
+
+  --table-header-background: #f5f5f5;
+
+  --regression-background: #f88;
+  --improvement-background: #8f8;
+}
+
+@supports (color-scheme: dark) {
+@media (prefers-color-scheme: dark) {
+  :root {
+    --page-background: rgb(28, 27, 34);
+    --page-foreground: rgb(251, 251, 254);
+
+    --table-header-background: rgb(43, 42, 51);
+
+    --regression-background: #800;
+    --improvement-background: #080;
+  }
+}
+}
+
+:root {
+  font-size: 12px;
+  background-color: var(--page-background);
+  color: var(--page-foreground);
+}
+table {
+  border-collapse: collapse;
+}
+th {
+  background-color: var(--table-header-background);
+}
+tr, th, td {
+  border: 1px solid var(--page-foreground);
+}
+thead tr {
+  border-bottom: 3px double var(--page-foreground);
+}
+tfoot tr:first-child {
+  border-top: 3px double var(--page-foreground);
+}
+thead th:first-child,
+tfoot th:first-child,
+tbody th {
+  border-inline-end: 3px double var(--page-foreground);
+}
+.suite-num-improvements {
+  border-inline-start: 3px double var(--page-foreground);
+}
+th, td {
+  padding: 2px 8px;
+  min-width: 6rem;
+}
+.test {
+  text-align: center;
+}
+th:first-child {
+  text-align: start;
+}
+.delta, .num {
+  text-align: end;
+}
+.c_low {
+  opacity: 0.2;
+}
+.c_med {
+  opacity: 0.5;
+}
+
+main {
+  margin-top: 40px;
+  margin-bottom: 1000px;
+}
+
+.nav {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  z-index: 100;
+  width: 100vw;
+  background-color: var(--page-background);
+  border-bottom: 1px solid var(--page-foreground);
+}
+.sep {
+  border: 0 solid var(--page-foreground);
+  border-width: 0 1px 0 0;
+  display: inline-block;
+  margin: 0 4px;
+  height: 20px;
+}
+</style>
+</head>
+<body>
+<script>
+const perfs = [];
+function add_data(title, d) {
+  perfs.push([title, d]);
+}
+</script>
+<script src="data/async.j"></script>
+<script src="table.js"></script>
+</body>
+</html>
